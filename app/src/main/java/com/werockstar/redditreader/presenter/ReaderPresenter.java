@@ -4,9 +4,9 @@ import com.werockstar.redditreader.model.RedditCollection;
 
 import java.util.List;
 
-interface ReaderPresenter {
+public interface ReaderPresenter {
     interface View {
-        void showRedditItem(List<RedditCollection> list);
+        void showRedditItem(RedditCollection list);
     }
 
     void setRedditItem();

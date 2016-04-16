@@ -5,7 +5,7 @@ import com.werockstar.redditreader.model.RedditCollection;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-interface RedditApiService {
+public interface RedditApiService {
 
     @GET("r/androiddev.json")
     Call<RedditCollection> getRedditItem();

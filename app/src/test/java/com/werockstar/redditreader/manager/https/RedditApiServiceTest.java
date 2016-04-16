@@ -82,7 +82,7 @@ public class RedditApiServiceTest {
                         "\"children\": ["+
                             "{" +
                                 "\"data\": {" +
-                                        "\"title\": \"Weekly\""+
+                                        "\"title\": \"Weekly \"who's hiring\" thread!\""+
                                     "}"+
                             "}"+
                         "]"+
