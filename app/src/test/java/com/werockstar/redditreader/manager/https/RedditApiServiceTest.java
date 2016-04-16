@@ -92,6 +92,16 @@ public class RedditApiServiceTest {
         Call<RedditCollection> call = service.getRedditItem();
         Response<RedditCollection> response = call.execute();
         RedditCollection collection = response.body();
+
         assertEquals("Weekly \"who's hiring\" thread!", collection.getDatas().getChildrenList().get(0).getData().getTitle());
+    }
+
+    @Test
+    public void getItemSizeShouldBeMoreThanZero() throws IOException{
+        Call<RedditCollection> call = service.getRedditItem();
+        Response<RedditCollection> response = call.execute();
+        RedditCollection collection = response.body();
+
+        assertTrue(collection.getDatas().getChildrenList().size() > 0);
     }
 }
