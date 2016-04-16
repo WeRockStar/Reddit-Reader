@@ -58,9 +58,11 @@ public class ReaderFragment extends Fragment implements ReaderPresenter.View {
 
     @Override
     public void showRedditItem(RedditCollection list) {
+        recyclerView.setAdapter(adapter);
         if(list != null){
-
+            adapter.setDataChage(list.getDatas().getChildrenList());
         }
 
+        adapter.notifyDataSetChanged();
     }
 }
