@@ -18,12 +18,14 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.mock.MockRetrofit;
 
 import static org.junit.Assert.*;
 
 public class RedditApiServiceTest {
 
     public Retrofit retrofit;
+
     public Gson gson;
 
     @Rule
@@ -38,10 +40,13 @@ public class RedditApiServiceTest {
 
         gson = new GsonBuilder()
                 .create();
+
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.reddit.com/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
+
+        MockRetrofit mockRetrofit = new MockRetrofit.Builder(retrofit).build();
 
         service = retrofit.create(RedditApiService.class);
     }
@@ -70,4 +75,23 @@ public class RedditApiServiceTest {
         assertEquals(200, response.code());
     }
 
+    @Test
+    public void getJsonShouldBeReturnPostTitle() throws IOException {
+        String res = "{" +
+                "\"data\": {" +
+                        "\"children\": ["+
+                            "{" +
+                                "\"data\": {" +
+                                        "\"title\": \"Weekly\""+
+                                    "}"+
+                            "}"+
+                        "]"+
+                    "}" +
+                "}";
+        server.enqueue(new MockResponse().setBody(res));
+        Call<RedditCollection> call = service.getRedditItem();
+        Response<RedditCollection> response = call.execute();
+        RedditCollection collection = response.body();
+        assertEquals("Weekly \"who's hiring\" thread!", collection.getDatas().getChildrenList().get(0).getData().getTitle());
+    }
 }
