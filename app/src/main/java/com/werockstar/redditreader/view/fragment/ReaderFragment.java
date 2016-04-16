@@ -51,7 +51,8 @@ public class ReaderFragment extends Fragment implements ReaderPresenter.View {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
-        swipeRefreshLayout.setColorSchemeColors(R.color.colorPrimary, R.color.colorPrimaryDark);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                R.color.colorPrimaryDark);
         swipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
