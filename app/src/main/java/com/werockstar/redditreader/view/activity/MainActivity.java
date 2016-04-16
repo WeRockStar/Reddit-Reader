@@ -1,7 +1,9 @@
-package com.werockstar.redditreader;
+package com.werockstar.redditreader.view.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.werockstar.redditreader.R;
 
 public class MainActivity extends AppCompatActivity {
 
