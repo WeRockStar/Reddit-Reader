@@ -3,6 +3,7 @@ package com.werockstar.redditreader.view.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,6 +26,7 @@ public class ReaderFragment extends Fragment implements ReaderPresenter.View {
     private RecyclerView.LayoutManager layoutManager;
     private ReaderPresenter presenter;
     private ReaderAdapter adapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public ReaderFragment() {
         // Required empty public constructor
@@ -48,21 +50,38 @@ public class ReaderFragment extends Fragment implements ReaderPresenter.View {
     private void setupViews() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
+
+        swipeRefreshLayout.setColorSchemeColors(R.color.colorPrimary, R.color.colorPrimaryDark);
+        swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefreshLayout.setRefreshing(true);
+            }
+        });
+
+        SwipeRefreshLayout.OnRefreshListener onRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.setRedditItem();
+            }
+        };
+        swipeRefreshLayout.setOnRefreshListener(onRefreshListener);
     }
 
     private void initInstance(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(Contextor.getInstance().getContext(),
                 LinearLayoutManager.VERTICAL, false);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
     }
 
     @Override
     public void showRedditItem(RedditCollection list) {
         recyclerView.setAdapter(adapter);
-        if(list != null){
+        if (list != null) {
             adapter.setDataChage(list.getDatas().getChildrenList());
         }
-
+        swipeRefreshLayout.setRefreshing(false);
         adapter.notifyDataSetChanged();
     }
 }

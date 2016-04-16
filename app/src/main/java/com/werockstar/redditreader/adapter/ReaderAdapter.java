@@ -26,6 +26,7 @@ public class ReaderAdapter extends RecyclerView.Adapter<ReaderAdapter.RedditView
         RedditCollection.Datas.Children item = list.get(position);
         if (item != null) {
             holder.tvTitle.setText(item.getData().getTitle());
+            holder.tvAuthor.setText(item.getData().getAuthor());
         }
     }
 
@@ -41,12 +42,14 @@ public class ReaderAdapter extends RecyclerView.Adapter<ReaderAdapter.RedditView
 
     public class RedditViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tvTitle;
+        private TextView tvTitle;
+        private TextView tvAuthor;
 
         public RedditViewHolder(View view) {
             super(view);
 
             tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+            tvAuthor = (TextView) view.findViewById(R.id.tvAuthor);
         }
     }
 
