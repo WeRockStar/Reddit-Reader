@@ -17,20 +17,22 @@ public class ReaderPresenterImpl implements ReaderPresenter {
 
     @Override
     public void setRedditItem() {
-
         Call<RedditCollection> call = HttpsManager.getInstance().getService().getRedditItem();
-        call.enqueue(new Callback<RedditCollection>() {
-            @Override
-            public void onResponse(Call<RedditCollection> call, Response<RedditCollection> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    view.showRedditItem(response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RedditCollection> call, Throwable t) {
-            }
-        });
-
+        call.enqueue(new RedditCallback());
     }
+
+    class RedditCallback implements Callback<RedditCollection> {
+        @Override
+        public void onResponse(Call<RedditCollection> call, Response<RedditCollection> response) {
+            if (response.isSuccessful() && response.body() != null) {
+                view.showRedditItem(response.body());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<RedditCollection> call, Throwable t) {
+
+        }
+    }
+
 }
