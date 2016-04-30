@@ -3,6 +3,7 @@
     package="com.werockstar.redditreader">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".RedditApplication"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.activity.DetailActivity"></activity>
     </application>
 
 </manifest>
