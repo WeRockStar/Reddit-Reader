@@ -1,5 +1,8 @@
 package com.werockstar.redditreader.presenter;
 
+import android.widget.Toast;
+
+import com.werockstar.redditreader.manager.Contextor;
 import com.werockstar.redditreader.manager.HttpsManager;
 import com.werockstar.redditreader.model.RedditCollection;
 
@@ -26,12 +29,16 @@ public class ReaderPresenterImpl implements ReaderPresenter {
         public void onResponse(Call<RedditCollection> call, Response<RedditCollection> response) {
             if (response.isSuccessful() && response.body() != null) {
                 view.showRedditItem(response.body());
+            } else {
+                Toast.makeText(Contextor.getInstance().getContext(),
+                        response.message(), Toast.LENGTH_LONG).show();
             }
         }
 
         @Override
         public void onFailure(Call<RedditCollection> call, Throwable t) {
-
+            Toast.makeText(Contextor.getInstance().getContext(),
+                    t.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
