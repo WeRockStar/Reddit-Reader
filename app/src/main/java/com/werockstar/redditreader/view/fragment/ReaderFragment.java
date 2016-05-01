@@ -29,7 +29,6 @@ public class ReaderFragment extends Fragment implements ReaderPresenter.View {
     private SwipeRefreshLayout swipeRefreshLayout;
 
     public ReaderFragment() {
-        // Required empty public constructor
     }
 
     @Override
