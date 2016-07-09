@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
 
     defaultConfig {
         applicationId "com.werockstar.redditreader"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -20,14 +20,15 @@ android {
 }
 
 dependencies {
-    def supportLibraryVersion = "23.3.0"
-    def retrofitVersion = "2.0.2"
+    def supportLibraryVersion = "24.0.0"
+    def retrofitVersion = "2.1.0"
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
     compile "com.squareup.retrofit2:retrofit-mock:$retrofitVersion"
-    testCompile 'com.squareup.okhttp3:mockwebserver:3.2.0'
+    testCompile 'com.squareup.okhttp3:mockwebserver:3.4.0'
+    compile 'com.squareup.okhttp3:okhttp:3.4.0'
     compile "com.android.support:design:$supportLibraryVersion"
     compile "com.android.support:cardview-v7:$supportLibraryVersion"
     compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
@@ -37,7 +38,7 @@ dependencies {
     compile "com.android.support:customtabs:$supportLibraryVersion"
     compile 'org.mockito:mockito-core:2.0.44-beta'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.android.support:support-v4:23.3.0'
+    compile "com.android.support:support-v4:$supportLibraryVersion"
 }
 
 
