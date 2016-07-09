@@ -1,6 +1,5 @@
 package com.werockstar.redditreader.presenter;
-
-import static org.junit.Assert.*;
+s
 
 public class ReaderPresenterTest {
 
